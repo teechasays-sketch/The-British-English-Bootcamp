@@ -503,11 +503,22 @@
                     structured learning. A certificate of real progress.
                 </p>
 
-                <div class="cta__pricing">
-                    <div class="pricing-card">
+                <div class="currency-toggle">
+                    <span class="currency-toggle__label currency-toggle__label--active" data-currency="gbp">£ GBP</span>
+                    <button class="currency-toggle__switch" id="currencySwitch" aria-label="Toggle currency between GBP and USD" role="switch" aria-checked="false">
+                        <span class="currency-toggle__knob"></span>
+                    </button>
+                    <span class="currency-toggle__label" data-currency="usd">$ USD</span>
+                </div>
+
+                <div class="cta__pricing" id="pricing">
+                    <div class="pricing-card" data-gbp="249" data-usd="316">
                         <h3 class="pricing-card__band">Explorer</h3>
                         <span class="pricing-card__age">Ages 4–7</span>
-                        <p class="pricing-card__price"><span class="pricing-card__currency">£</span>249</p>
+                        <p class="pricing-card__price">
+                            <span class="pricing-card__currency">£</span>
+                            <span class="pricing-card__amount" data-gbp="249" data-usd="316">249</span>
+                        </p>
                         <p class="pricing-card__note">One-time payment · Full 8-week programme</p>
                         <ul class="pricing-card__features">
                             <li>✅ 8 weekly sessions</li>
@@ -517,11 +528,14 @@
                         </ul>
                         <a href="#" class="btn btn--primary btn--full">Enrol Explorer</a>
                     </div>
-                    <div class="pricing-card pricing-card--featured">
+                    <div class="pricing-card pricing-card--featured" data-gbp="299" data-usd="380">
                         <div class="pricing-card__popular">Most Popular</div>
                         <h3 class="pricing-card__band">Achiever</h3>
                         <span class="pricing-card__age">Ages 8–10</span>
-                        <p class="pricing-card__price"><span class="pricing-card__currency">£</span>299</p>
+                        <p class="pricing-card__price">
+                            <span class="pricing-card__currency">£</span>
+                            <span class="pricing-card__amount" data-gbp="299" data-usd="380">299</span>
+                        </p>
                         <p class="pricing-card__note">One-time payment · Full 8-week programme</p>
                         <ul class="pricing-card__features">
                             <li>✅ 8 weekly sessions</li>
@@ -531,10 +545,13 @@
                         </ul>
                         <a href="#" class="btn btn--primary btn--full">Enrol Achiever</a>
                     </div>
-                    <div class="pricing-card">
+                    <div class="pricing-card" data-gbp="349" data-usd="443">
                         <h3 class="pricing-card__band">Laureate</h3>
                         <span class="pricing-card__age">Ages 11–13</span>
-                        <p class="pricing-card__price"><span class="pricing-card__currency">£</span>349</p>
+                        <p class="pricing-card__price">
+                            <span class="pricing-card__currency">£</span>
+                            <span class="pricing-card__amount" data-gbp="349" data-usd="443">349</span>
+                        </p>
                         <p class="pricing-card__note">One-time payment · Full 8-week programme</p>
                         <ul class="pricing-card__features">
                             <li>✅ 8 weekly sessions</li>

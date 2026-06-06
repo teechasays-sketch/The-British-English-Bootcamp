@@ -102,4 +102,63 @@
         }
     });
 
+    // --- Currency toggle (GBP/USD) ---
+    const currencySwitch = document.getElementById('currencySwitch');
+    const currencyLabels = document.querySelectorAll('.currency-toggle__label');
+    const priceAmounts = document.querySelectorAll('.pricing-card__amount');
+    const priceCurrencies = document.querySelectorAll('.pricing-card__currency');
+    const priceCards = document.querySelectorAll('.pricing-card');
+
+    if (currencySwitch) {
+        let isUSD = false;
+
+        function setCurrency(showUSD) {
+            isUSD = showUSD;
+
+            // Toggle switch visual
+            currencySwitch.classList.toggle('currency-toggle__switch--usd', isUSD);
+            currencySwitch.setAttribute('aria-checked', isUSD ? 'true' : 'false');
+
+            // Update labels
+            currencyLabels.forEach(function (label) {
+                const curr = label.getAttribute('data-currency');
+                if (curr === 'gbp' && !isUSD) {
+                    label.classList.add('currency-toggle__label--active');
+                } else if (curr === 'usd' && isUSD) {
+                    label.classList.add('currency-toggle__label--active');
+                } else {
+                    label.classList.remove('currency-toggle__label--active');
+                }
+            });
+
+            // Update price amounts
+            priceCards.forEach(function (card) {
+                const amountEl = card.querySelector('.pricing-card__amount');
+                const currencyEl = card.querySelector('.pricing-card__currency');
+                if (amountEl && currencyEl) {
+                    if (isUSD) {
+                        currencyEl.textContent = "$";
+                        amountEl.textContent = amountEl.getAttribute('data-usd');
+                    } else {
+                        currencyEl.textContent = '\u00A3';
+                        amountEl.textContent = amountEl.getAttribute('data-gbp');
+                    }
+                }
+            });
+        }
+
+        // Click toggle
+        currencySwitch.addEventListener('click', function () {
+            setCurrency(!isUSD);
+        });
+
+        // Keyboard support
+        currencySwitch.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                setCurrency(e.key === 'ArrowRight');
+            }
+        });
+    }
+
 })();
