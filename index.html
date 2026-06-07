@@ -526,7 +526,7 @@
                             <li>✅ Milestone check-ins (W4 + W8)</li>
                             <li>✅ Explorer Certificate</li>
                         </ul>
-                        <a href="#" class="btn btn--primary btn--full">Enrol Explorer</a>
+                        <a href="#" class="btn btn--primary btn--full" data-enrol="explorer">Enrol Explorer</a>
                     </div>
                     <div class="pricing-card pricing-card--featured" data-gbp="299" data-usd="380">
                         <div class="pricing-card__popular">Most Popular</div>
@@ -543,7 +543,7 @@
                             <li>✅ Milestone check-ins (W4 + W8)</li>
                             <li>✅ Achiever Certificate</li>
                         </ul>
-                        <a href="#" class="btn btn--primary btn--full">Enrol Achiever</a>
+                        <a href="#" class="btn btn--primary btn--full" data-enrol="achiever">Enrol Achiever</a>
                     </div>
                     <div class="pricing-card" data-gbp="349" data-usd="443">
                         <h3 class="pricing-card__band">Laureate</h3>
@@ -559,7 +559,7 @@
                             <li>✅ Milestone check-ins (W4 + W8)</li>
                             <li>✅ Laureate Certificate</li>
                         </ul>
-                        <a href="#" class="btn btn--primary btn--full">Enrol Laureate</a>
+                        <a href="#" class="btn btn--primary btn--full" data-enrol="laureate">Enrol Laureate</a>
                     </div>
                 </div>
 
@@ -569,6 +569,69 @@
             </div>
         </div>
     </section>
+
+    <!-- ===== ENROLMENT MODAL ===== -->
+    <div class="modal" id="enrolModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose" aria-label="Close enrolment form">&times;</button>
+            <h3 class="modal__title" id="modalTitle">Enrol in the <span class="accent">British English Bootcamp</span></h3>
+            <p class="modal__subtitle" id="modalSubtitle">Secure your child's spot in our next cohort.</p>
+
+            <form class="enrol-form" id="enrolForm" novalidate>
+                <div class="form__group">
+                    <label class="form__label" for="formParent">Parent / Guardian Name</label>
+                    <input class="form__input" type="text" id="formParent" name="parent_name" required placeholder="Your full name">
+                    <span class="form__error" id="errorParent">Please enter your name</span>
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label" for="formEmail">Email Address</label>
+                    <input class="form__input" type="email" id="formEmail" name="email" required placeholder="your@email.com">
+                    <span class="form__error" id="errorEmail">Please enter a valid email address</span>
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label" for="formChild">Child's Name</label>
+                    <input class="form__input" type="text" id="formChild" name="child_name" required placeholder="Child's full name">
+                    <span class="form__error" id="errorChild">Please enter your child's name</span>
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label" for="formBand">Age Band</label>
+                    <select class="form__select" id="formBand" name="age_band" required>
+                        <option value="" disabled selected>Select an age band</option>
+                        <option value="explorer">Explorer (Ages 4–7)</option>
+                        <option value="achiever">Achiever (Ages 8–10)</option>
+                        <option value="laureate">Laureate (Ages 11–13)</option>
+                    </select>
+                    <span class="form__error" id="errorBand">Please select an age band</span>
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label" for="formCohort">Preferred Cohort</label>
+                    <select class="form__select" id="formCohort" name="cohort" required>
+                        <option value="" disabled selected>Select a cohort</option>
+                        <option value="summer-2025">Summer 2025 (July — August)</option>
+                        <option value="autumn-2025">Autumn 2025 (September — October)</option>
+                        <option value="winter-2025">Winter 2025 (November — December)</option>
+                        <option value="spring-2026">Spring 2026 (January — March)</option>
+                    </select>
+                    <span class="form__error" id="errorCohort">Please select a cohort</span>
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--full form__submit">Submit Enrolment Request</button>
+                <p class="form__disclaimer">We'll contact you within 24 hours to confirm your child's spot. No payment is taken at this stage.</p>
+            </form>
+
+            <div class="enrol-success" id="enrolSuccess" aria-hidden="true">
+                <div class="enrol-success__icon">&#10003;</div>
+                <h4 class="enrol-success__title">Enquiry Submitted!</h4>
+                <p class="enrol-success__text">Thank you! We'll be in touch within 24 hours to confirm your child's place in the bootcamp.</p>
+                <button class="btn btn--primary" id="successClose">Close</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">

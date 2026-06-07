@@ -161,4 +161,156 @@
         });
     }
 
+    // --- Enrolment Modal ---
+    const modal = document.getElementById('enrolModal');
+    const overlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const enrolForm = document.getElementById('enrolForm');
+    const formBand = document.getElementById('formBand');
+    const successEl = document.getElementById('enrolSuccess');
+    const successClose = document.getElementById('successClose');
+    let focusableElements = null;
+
+    // Open modal on Enrol button click
+    document.querySelectorAll('[data-enrol]').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            var band = this.getAttribute('data-enrol');
+
+            if (formBand) formBand.value = band;
+
+            var bandName = {
+                explorer: 'Explorer (Ages 4\u20137)',
+                achiever: 'Achiever (Ages 8\u201310)',
+                laureate: 'Laureate (Ages 11\u201313)'
+            }[band] || '';
+
+            if (modalSubtitle) {
+                modalSubtitle.textContent = bandName
+                    ? 'Secure your spot in the ' + bandName + ' programme.'
+                    : "Secure your child's spot in our next cohort.";
+            }
+
+            openModal();
+        });
+    });
+
+    function openModal() {
+        if (!modal) return;
+        modal.classList.add('modal--open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (successEl) successEl.classList.remove('enrol-success--visible');
+        if (enrolForm) enrolForm.style.display = '';
+
+        setTimeout(function () {
+            var first = modal.querySelector('input, select');
+            if (first) first.focus();
+        }, 100);
+
+        focusableElements = modal.querySelectorAll(
+            'input, select, button, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('modal--open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (overlay) overlay.addEventListener('click', closeModal);
+    if (successClose) successClose.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('modal--open')) {
+            closeModal();
+        }
+
+        if (e.key === 'Tab' && modal && modal.classList.contains('modal--open') && focusableElements && focusableElements.length) {
+            var first = focusableElements[0];
+            var last = focusableElements[focusableElements.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    });
+
+    // Form validation & submission
+    if (enrolForm) {
+        var fields = {
+            parent: { el: document.getElementById('formParent'), err: document.getElementById('errorParent') },
+            email: { el: document.getElementById('formEmail'), err: document.getElementById('errorEmail') },
+            child: { el: document.getElementById('formChild'), err: document.getElementById('errorChild') },
+            band: { el: document.getElementById('formBand'), err: document.getElementById('errorBand') },
+            cohort: { el: document.getElementById('formCohort'), err: document.getElementById('errorCohort') }
+        };
+
+        function validate(key) {
+            var f = fields[key];
+            if (!f || !f.el) return true;
+            var val = (f.el.value || '').trim();
+            var ok = true;
+            if (key === 'email') {
+                ok = val.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+            } else if (key === 'parent' || key === 'child') {
+                ok = val.length >= 2;
+            } else {
+                ok = val !== '';
+            }
+            if (!ok) {
+                f.el.classList.add('form__input--error');
+                if (f.err) f.err.classList.add('form__error--visible');
+            } else {
+                f.el.classList.remove('form__input--error');
+                if (f.err) f.err.classList.remove('form__error--visible');
+            }
+            return ok;
+        }
+
+        Object.keys(fields).forEach(function (key) {
+            var f = fields[key];
+            if (f && f.el) {
+                f.el.addEventListener('blur', function () { validate(key); });
+                f.el.addEventListener('input', function () {
+                    f.el.classList.remove('form__input--error');
+                    if (f.err) f.err.classList.remove('form__error--visible');
+                });
+            }
+        });
+
+        enrolForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var allOk = true;
+            Object.keys(fields).forEach(function (key) {
+                if (!validate(key)) allOk = false;
+            });
+            if (!allOk) return;
+
+            var data = {
+                parent_name: fields.parent.el.value.trim(),
+                email: fields.email.el.value.trim(),
+                child_name: fields.child.el.value.trim(),
+                age_band: fields.band.el.value,
+                cohort: fields.cohort.el.value,
+                timestamp: new Date().toISOString()
+            };
+
+            var enrolments = JSON.parse(localStorage.getItem('bootcamp_enrolments') || '[]');
+            enrolments.push(data);
+            localStorage.setItem('bootcamp_enrolments', JSON.stringify(enrolments));
+
+            enrolForm.style.display = 'none';
+            if (successEl) successEl.classList.add('enrol-success--visible');
+            enrolForm.reset();
+        });
+    }
+
 })();
