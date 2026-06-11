@@ -313,4 +313,23 @@
         });
     }
 
+// --- WeChat QR toggle for touch devices ---
+    var wechatIcon = document.getElementById('wechatIcon');
+    var wechatQR = document.getElementById('wechatQR');
+    if (wechatIcon && wechatQR) {
+        wechatIcon.addEventListener('click', function (e) {
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                e.preventDefault();
+                var isVisible = wechatQR.style.display === 'block';
+                wechatQR.style.display = isVisible ? '' : 'block';
+            }
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!wechatIcon.contains(e.target) && wechatQR.style.display === 'block') {
+                wechatQR.style.display = '';
+            }
+        });
+    }
+
 })();
