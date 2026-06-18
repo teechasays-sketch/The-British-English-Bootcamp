@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-namespace="paypal_sdk" data-sdk-integration-source="button-factory"></script>
 </head>
 <body>
 
@@ -23,7 +24,8 @@
                 <span></span><span></span><span></span>
             </button>
             <ul class="nav__links" id="navLinks">
-                <li><a href="#programme" class="nav__link">Programme</a></li>
+                <li><a href="#programme" class="nav__link">Bootcamp</a></li>
+                <li><a href="#tutoring" class="nav__link">1-1 Tutoring</a></li>
                 <li><a href="#age-bands" class="nav__link">Age Bands</a></li>
                 <li><a href="#how-it-works" class="nav__link">How It Works</a></li>
                 <li><a href="#certificate" class="nav__link">Certificate</a></li>
@@ -356,6 +358,83 @@
         </div>
     </section>
 
+    <!-- ===== 1-1 ONLINE TUTORING ===== -->
+    <section class="section" id="tutoring">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__tag">Flexible Option</span>
+                <h2 class="section__title">1-1 Online Tutoring — <span class="accent">$20 / Lesson</span></h2>
+                <p class="section__desc">
+                    Not ready for the full bootcamp? Our personalised 1-1 tutoring sessions offer 
+                    flexible British English support tailored to your child's needs — at a price 
+                    that fits any budget.
+                </p>
+            </div>
+
+            <div class="grid grid--3">
+                <div class="feature-card">
+                    <div class="feature-card__icon feature-card__icon--package">👤</div>
+                    <h3 class="feature-card__title">Personalised Attention</h3>
+                    <p class="feature-card__text">
+                        Every session is tailored to your child's unique learning pace and goals — 
+                        whether they need phonics support, writing guidance, or exam preparation.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card__icon feature-card__icon--milestone">🕐</div>
+                    <h3 class="feature-card__title">Flexible Scheduling</h3>
+                    <p class="feature-card__text">
+                        Book lessons when they suit you. No fixed cohorts, no minimum commitment — 
+                        just pay-as-you-go at $20 per hour-long session.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card__icon feature-card__icon--cert">🎓</div>
+                    <h3 class="feature-card__title">Same British Standard</h3>
+                    <p class="feature-card__text">
+                        All tutors follow the same British English pedagogy and curriculum as our 
+                        bootcamp — so your child gets consistent, high-quality instruction.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tutoring-cta">
+                <div class="tutoring-card">
+                    <div class="tutoring-card__header">
+                        <span class="tutoring-card__tag">Flexible Lessons</span>
+                        <h3 class="tutoring-card__title">Try a Session Today</h3>
+                    </div>
+                    <div class="tutoring-card__body">
+                        <div class="tutoring-card__pricing">
+                            <span class="tutoring-card__currency">$</span>
+                            <span class="tutoring-card__amount">20</span>
+                            <span class="tutoring-card__per">/ lesson</span>
+                        </div>
+                        <ul class="tutoring-card__features">
+                            <li>✅ 1-on-1 with a British English specialist</li>
+                            <li>✅ Tailored to your child's age &amp; level</li>
+                            <li>✅ Flexible scheduling — book weekly or ad-hoc</li>
+                            <li>✅ All ages welcome (4–13)</li>
+                        </ul>
+                    </div>
+                    <div class="tutoring-card__cta">
+                        <div id="paypal-button-container" class="paypal-btn-container">
+                            <div class="paypal-placeholder">
+                                <p>💳 PayPal Checkout</p>
+                                <p class="paypal-placeholder__sub">Pay securely via PayPal</p>
+                                <div class="paypal-button-mock" id="paypalButton">
+                                    <span class="paypal-button-mock__icon">PayPal</span>
+                                    <span class="paypal-button-mock__text">Pay $20 for 1 Lesson</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="tutoring-card__note">No account needed. Pay per session. Cancel anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== CERTIFICATE ===== -->
     <section class="section section--alt" id="certificate">
         <div class="container">
@@ -623,6 +702,21 @@
                 <button type="submit" class="btn btn--primary btn--full form__submit">Submit Enrolment Request</button>
                 <p class="form__disclaimer">We'll contact you within 24 hours to confirm your child's spot. No payment is taken at this stage.</p>
             </form>
+
+            <div class="paypal-checkout-section">
+                <div class="paypal-checkout-divider">
+                    <span>or pay instantly with</span>
+                </div>
+                <div id="paypal-modal-button" class="paypal-btn-container paypal-btn-container--inline">
+                    <div class="paypal-placeholder paypal-placeholder--modal">
+                        <div class="paypal-button-mock" id="paypalModalButton">
+                            <span class="paypal-button-mock__icon">PayPal</span>
+                            <span class="paypal-button-mock__text">Pay $20 for 1 Tutoring Lesson</span>
+                        </div>
+                        <p class="paypal-placeholder__sub">Secure checkout via PayPal</p>
+                    </div>
+                </div>
+            </div>
 
             <div class="enrol-success" id="enrolSuccess" aria-hidden="true">
                 <div class="enrol-success__icon">&#10003;</div>

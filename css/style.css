@@ -657,6 +657,205 @@ strong { font-weight: 700; }
 }
 
 /* ===================================================================
+   1-1 TUTORING SECTION
+   =================================================================== */
+.tutoring-cta {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.tutoring-card {
+    background: var(--white);
+    border: 2px solid var(--cream-dark);
+    border-radius: 24px;
+    max-width: 480px;
+    width: 100%;
+    overflow: hidden;
+    transition: all var(--speed) var(--ease);
+}
+
+.tutoring-card:hover {
+    box-shadow: 0 12px 40px rgba(10, 31, 63, 0.08);
+    border-color: var(--gold-light);
+}
+
+.tutoring-card__header {
+    background: var(--navy);
+    padding: 1.75rem 2rem;
+    text-align: center;
+}
+
+.tutoring-card__tag {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold-light);
+    background: rgba(201, 168, 76, 0.12);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    margin-bottom: 0.5rem;
+}
+
+.tutoring-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.tutoring-card__body {
+    padding: 2rem 2rem 1.5rem;
+    text-align: center;
+}
+
+.tutoring-card__pricing {
+    margin-bottom: 1.25rem;
+}
+
+.tutoring-card__currency {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold-dark);
+    vertical-align: super;
+}
+
+.tutoring-card__amount {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+}
+
+.tutoring-card__per {
+    font-size: 0.9375rem;
+    color: var(--grey);
+    margin-left: 0.25rem;
+}
+
+.tutoring-card__features {
+    text-align: left;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.tutoring-card__features li {
+    padding: 0.375rem 0;
+    font-size: 0.875rem;
+    color: var(--charcoal);
+}
+
+.tutoring-card__cta {
+    padding: 0 2rem 2rem;
+    text-align: center;
+}
+
+.tutoring-card__note {
+    font-size: 0.75rem;
+    color: var(--grey);
+    margin-top: 0.75rem;
+}
+
+/* PayPal Buttons */
+.paypal-btn-container {
+    margin: 0 auto;
+}
+
+.paypal-btn-container--inline {
+    margin-top: 1rem;
+}
+
+.paypal-placeholder {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.paypal-placeholder--modal {
+    border-color: var(--cream-dark);
+    background: var(--cream);
+}
+
+.paypal-placeholder p {
+    font-size: 0.875rem;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+}
+
+.paypal-placeholder--modal p {
+    color: var(--navy);
+}
+
+.paypal-placeholder__sub {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.paypal-placeholder--modal .paypal-placeholder__sub {
+    color: var(--grey) !important;
+}
+
+.paypal-button-mock {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #0070ba;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all var(--speed) var(--ease);
+    border: none;
+    font-size: 0.9375rem;
+    margin: 0.5rem 0;
+}
+
+.paypal-button-mock:hover {
+    background: #003087;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 112, 186, 0.3);
+}
+
+.paypal-button-mock__icon {
+    font-weight: 800;
+    font-style: italic;
+    font-size: 1.125rem;
+}
+
+.paypal-checkout-section {
+    margin-top: 0.5rem;
+}
+
+.paypal-checkout-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.75rem 0;
+}
+
+.paypal-checkout-divider::before,
+.paypal-checkout-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--cream-dark);
+}
+
+.paypal-checkout-divider span {
+    font-size: 0.75rem;
+    color: var(--grey);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ===================================================================
    CERTIFICATE SHOWCASE
    =================================================================== */
 .cert-showcase {

@@ -332,4 +332,45 @@
         });
     }
 
+// --- PayPal button simulation ---
+    var paypalBtn = document.getElementById('paypalButton');
+    var paypalModalBtn = document.getElementById('paypalModalButton');
+
+    function handlePaypalClick(btn, label) {
+        if (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                btn.textContent = 'Redirecting to PayPal...';
+                btn.style.opacity = '0.6';
+                btn.style.cursor = 'wait';
+
+                // Simulate redirect — in production this would call the PayPal SDK
+                setTimeout(function () {
+                    btn.textContent = label;
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                    showPaypalAlert(label);
+                }, 1500);
+            });
+        }
+    }
+
+    function showPaypalAlert(label) {
+        // Simple modal-like alert without relying on alert()
+        var existing = document.getElementById('paypalAlert');
+        if (existing) existing.remove();
+
+        var alertEl = document.createElement('div');
+        alertEl.id = 'paypalAlert';
+        alertEl.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:2rem;border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,0.2);z-index:3000;text-align:center;max-width:380px;width:90%;font-family:Inter,sans-serif;';
+        alertEl.innerHTML = '<div style="font-size:2rem;margin-bottom:0.75rem;">🔒</div><h3 style="font-size:1.125rem;color:#0A1F3F;margin-bottom:0.5rem;font-family:Crimson Pro,serif;">PayPal Sandbox Mode</h3><p style="font-size:0.875rem;color:#6B7280;line-height:1.6;margin-bottom:1.25rem;">' + label + '<br><br>In production, the PayPal Smart Button SDK will handle the full checkout flow securely.</p><button id="paypalAlertClose" style="background:#C9A84C;color:#0A1F3F;border:none;padding:0.625rem 1.5rem;border-radius:50px;font-weight:600;cursor:pointer;font-size:0.875rem;">Got it</button>';
+        document.body.appendChild(alertEl);
+        document.getElementById('paypalAlertClose').addEventListener('click', function () {
+            alertEl.remove();
+        });
+    }
+
+    handlePaypalClick(paypalBtn, 'Pay $20 for 1 Lesson');
+    handlePaypalClick(paypalModalBtn, 'Pay $20 for 1 Tutoring Lesson');
+
 })();
